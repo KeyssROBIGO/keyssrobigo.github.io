@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keyss Robigo — Portfolio</title>
+<meta name="description" content="Portfolio de Keyss Robigo — Étudiante en Marketing du Luxe à l'EIML Paris. Ambassadrice EIML, projets évènementiels et créatifs.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0d1b2a;
+  --navy-mid:#162536;
+  --navy-light:#1e3347;
+  --burg:#7b2d40;
+  --burg-l:#a84057;
+  --cream:#f4ede3;
+  --cream-d:#e5dace;
+  --gold:#c4a15a;
+  --muted:#7a8fa3;
+  --line:rgba(244,237,227,0.12);
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:300;min-height:100vh;line-height:1.6;overflow-x:hidden}
+::selection{background:var(--burg);color:var(--cream)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 3rem;background:rgba(13,27,42,0.85);backdrop-filter:blur(12px);border-bottom:0.5px solid var(--line)}
+.logo{font-family:'Playfair Display',serif;font-size:1.25rem;letter-spacing:0.15em;font-weight:500}
+.nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center}
+.nav-links a{color:var(--cream);text-decoration:none;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;opacity:0.75;transition:opacity 0.3s ease;cursor:pointer}
+.nav-links a:hover{opacity:1}
+.lang-toggle{font-size:0.75rem;letter-spacing:0.15em;color:var(--gold);cursor:pointer;background:none;border:1px solid var(--gold);padding:0.4rem 0.8rem;border-radius:2px;transition:all 0.3s;font-family:inherit}
+.lang-toggle:hover{background:var(--gold);color:var(--navy)}
+.fr-only,.en-only{display:inline}
+body.lang-en .fr-only{display:none}
+body.lang-en .en-only{display:inline}
+body:not(.lang-en) .en-only{display:none}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:7rem 2rem 4rem;text-align:center;position:relative;background:radial-gradient(ellipse at center,var(--navy-light) 0%,var(--navy) 70%)}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");pointer-events:none;opacity:0.5}
+.hero-tag{font-size:0.7rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:2.5rem;opacity:0;animation:fadeUp 0.9s 0.2s ease forwards}
+.hero h1{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(3.5rem,9vw,8rem);line-height:0.95;letter-spacing:-0.02em;margin-bottom:1.5rem;opacity:0;animation:fadeUp 1s 0.4s ease forwards}
+.hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.hero-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1rem,2vw,1.4rem);letter-spacing:0.04em;color:var(--cream-d);margin-bottom:3rem;opacity:0;animation:fadeUp 1s 0.6s ease forwards}
+.hero-sub span{display:inline-block;padding:0 0.6rem;opacity:0.6}
+.hero-desc{max-width:550px;font-size:0.95rem;line-height:1.8;color:var(--muted);opacity:0;animation:fadeUp 1s 0.8s ease forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.scroll-indicator{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);opacity:0;animation:fadeUp 1s 1.2s ease forwards}
+.scroll-indicator::after{content:'';display:block;width:1px;height:35px;background:var(--gold);margin:0.8rem auto 0;animation:scrollLine 2s ease-in-out infinite}
+@keyframes scrollLine{0%,100%{transform:scaleY(0.4);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}}
+
+/* SECTIONS */
+section{padding:7rem 3rem;position:relative}
+.section-eyebrow{font-size:0.7rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:block}
+.section-title{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(2.5rem,5vw,4.5rem);line-height:1.1;letter-spacing:-0.01em;margin-bottom:3rem}
+.section-title em{font-style:italic;color:var(--burg-l)}
+.container{max-width:1200px;margin:0 auto}
+
+/* ABOUT */
+.about{background:var(--navy)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:4rem;align-items:start}
+.about-portrait{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:2px;background:var(--navy-light)}
+.about-portrait img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(0.95) contrast(1.02)}
+.about-portrait::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(13,27,42,0.25));pointer-events:none}
+.about-portrait-cap{font-family:'Playfair Display',serif;font-style:italic;font-size:0.85rem;color:var(--muted);margin-top:1rem;text-align:left;letter-spacing:0.02em}
+.about-text p{margin-bottom:1.5rem;color:var(--cream-d);font-size:0.95rem;line-height:1.9}
+.about-text p:last-child{color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:2.5rem;margin-top:3rem}
+.stat{border-top:1px solid var(--line);padding-top:1.5rem}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--gold);font-weight:400;display:block;line-height:1}
+.stat-label{font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:0.5rem;display:block}
+.tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:2rem}
+.tag{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.4rem 0.9rem;border:1px solid var(--line);border-radius:2px;color:var(--cream-d)}
+
+/* PROJECTS GRID */
+.projects{background:var(--navy-mid)}
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2.5rem;margin-top:4rem}
+.project-card{background:var(--navy);padding:2.5rem;border:1px solid var(--line);transition:all 0.4s ease;cursor:pointer;position:relative;overflow:hidden;text-decoration:none;color:inherit;display:block}
+.project-card::before{content:'';position:absolute;top:0;left:0;width:0;height:1px;background:var(--gold);transition:width 0.5s ease}
+.project-card:hover::before{width:100%}
+.project-card:hover{background:var(--navy-light);transform:translateY(-4px)}
+.project-num{font-family:'Playfair Display',serif;font-size:0.95rem;color:var(--gold);letter-spacing:0.1em;margin-bottom:1.5rem;display:block}
+.project-title{font-family:'Playfair Display',serif;font-weight:400;font-size:1.8rem;line-height:1.2;margin-bottom:1rem}
+.project-meta{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;opacity:0.85}
+.project-desc{color:var(--cream-d);font-size:0.9rem;line-height:1.7;margin-bottom:1.5rem}
+.project-cta{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:0.6rem}
+.project-cta::after{content:'→';transition:transform 0.3s}
+.project-card:hover .project-cta::after{transform:translateX(6px)}
+.project-card.featured{grid-column:1/-1;background:linear-gradient(135deg,var(--burg) 0%,var(--navy-light) 100%)}
+.project-card.featured .project-num,.project-card.featured .project-cta,.project-card.featured .project-meta{color:var(--cream)}
+
+/* DETAILED PROJECT SECTIONS */
+.project-detail{padding:6rem 3rem;border-top:1px solid var(--line);scroll-margin-top:80px}
+.project-detail:nth-child(odd){background:var(--navy)}
+.project-detail:nth-child(even){background:var(--navy-mid)}
+.detail-header{max-width:1200px;margin:0 auto 4rem;display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:end}
+.detail-num{font-family:'Playfair Display',serif;font-style:italic;font-size:5rem;color:var(--gold);line-height:1;opacity:0.5}
+.detail-title{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(2rem,4vw,3.5rem);line-height:1.1;letter-spacing:-0.01em}
+.detail-title em{font-style:italic;color:var(--burg-l)}
+.detail-meta{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:block}
+
+.detail-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;align-items:start}
+.detail-text p{margin-bottom:1.5rem;color:var(--cream-d);font-size:0.95rem;line-height:1.9}
+.detail-text .lead{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;color:var(--cream);margin-bottom:2rem;line-height:1.5}
+.detail-list{list-style:none;margin:1.5rem 0}
+.detail-list li{padding:0.7rem 0;border-bottom:1px solid var(--line);font-size:0.9rem;color:var(--cream-d);display:flex;gap:1rem}
+.detail-list li::before{content:'—';color:var(--gold)}
+.detail-result{margin-top:2rem;padding:1.5rem;background:rgba(196,161,90,0.08);border-left:2px solid var(--gold)}
+.detail-result-label{font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:0.5rem}
+.detail-result-text{font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:var(--cream);line-height:1.5}
+
+/* GALLERY */
+.gallery{display:grid;gap:1rem}
+.gallery-marche{grid-template-columns:repeat(2,1fr);grid-template-rows:auto auto}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block;border-radius:2px;transition:transform 0.6s ease}
+.gallery-item{overflow:hidden;background:var(--navy-light);aspect-ratio:3/4;position:relative}
+.gallery-item:hover img{transform:scale(1.05)}
+.gallery-marche .gallery-item:nth-child(1){aspect-ratio:3/4}
+.gallery-marche .gallery-item:nth-child(2){aspect-ratio:3/4}
+.gallery-marche .gallery-item:nth-child(3){aspect-ratio:3/4}
+.gallery-marche .gallery-item:nth-child(4){aspect-ratio:3/4}
+
+.gallery-plexis{grid-template-columns:repeat(2,1fr)}
+.gallery-plexis .gallery-item{aspect-ratio:3/4}
+.gallery-plexis .gallery-item.tall{grid-row:span 1}
+
+.gallery-celine{grid-template-columns:1fr}
+.gallery-celine .gallery-item{aspect-ratio:4/3}
+
+.gallery-glomria{grid-template-columns:1fr 1fr;grid-template-areas:"charte charte" "ecom produit"}
+.gallery-glomria .gallery-item{aspect-ratio:3/4;background:var(--cream-d)}
+.gallery-glomria .gallery-charte{grid-area:charte;aspect-ratio:16/11}
+.gallery-glomria .gallery-charte img{object-fit:contain;padding:0;background:#fff5e6}
+.gallery-glomria .gallery-item:nth-child(2){grid-area:ecom}
+.gallery-glomria .gallery-item:nth-child(3){grid-area:produit}
+
+/* CONTACT */
+.contact{background:var(--navy);text-align:center;padding:8rem 3rem}
+.contact-title{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(3rem,7vw,6rem);line-height:1;margin-bottom:2rem}
+.contact-title em{font-style:italic;color:var(--burg-l)}
+.contact p{color:var(--muted);font-size:1rem;margin-bottom:2.5rem;max-width:500px;margin-left:auto;margin-right:auto}
+.contact-btn{display:inline-block;padding:1.1rem 2.5rem;background:var(--cream);color:var(--navy);text-decoration:none;font-size:0.8rem;letter-spacing:0.25em;text-transform:uppercase;font-weight:500;transition:all 0.4s ease;border:1px solid var(--cream)}
+.contact-btn:hover{background:transparent;color:var(--cream)}
+.contact-email{display:block;margin-top:2rem;color:var(--gold);font-size:0.85rem;letter-spacing:0.15em;text-decoration:none}
+
+/* FOOTER */
+footer{padding:3rem;text-align:center;border-top:1px solid var(--line);background:var(--navy)}
+footer p{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+footer .logo{margin-bottom:0.5rem;display:block}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav{padding:1rem 1.5rem}
+  .nav-links{gap:1.2rem}
+  .nav-links a{font-size:0.7rem;letter-spacing:0.08em}
+  section{padding:5rem 1.5rem}
+  .about-grid{grid-template-columns:1fr;gap:3rem}
+  .about-portrait{max-width:400px;margin:0 auto}
+  .detail-grid{grid-template-columns:1fr;gap:3rem}
+  .projects-grid{grid-template-columns:1fr;gap:1.5rem}
+  .project-card{padding:2rem}
+  .detail-header{grid-template-columns:1fr;gap:1rem}
+  .detail-num{font-size:3rem}
+  .project-detail{padding:4.5rem 1.5rem}
+  .gallery-marche,.gallery-plexis{grid-template-columns:1fr 1fr}
+  .gallery-glomria{grid-template-columns:1fr;grid-template-areas:"charte" "ecom" "produit"}
+  .stats{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .nav-links{gap:0.8rem}
+  .lang-toggle{padding:0.3rem 0.5rem;font-size:0.65rem}
+  .gallery-marche,.gallery-plexis{grid-template-columns:1fr}
+}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;background:rgba(13,27,42,0.97);z-index:1000;display:none;align-items:center;justify-content:center;padding:2rem;cursor:zoom-out;backdrop-filter:blur(10px)}
+.lightbox.active{display:flex}
+.lightbox img{max-width:95%;max-height:95vh;object-fit:contain;border-radius:2px}
+.lightbox-close{position:absolute;top:2rem;right:2rem;color:var(--cream);font-size:2rem;cursor:pointer;background:none;border:none;font-family:inherit;line-height:1;width:50px;height:50px;display:flex;align-items:center;justify-content:center}
+.gallery-item{cursor:zoom-in}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#top" class="logo">KR</a>
+  <ul class="nav-links">
+    <li><a href="#about"><span class="fr-only">À propos</span><span class="en-only">About</span></a></li>
+    <li><a href="#projects"><span class="fr-only">Projets</span><span class="en-only">Projects</span></a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><button class="lang-toggle" onclick="toggleLang()">EN / FR</button></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <span class="hero-tag">Portfolio · EIML Paris · 2026</span>
+  <h1>Keyss <em>Robigo</em></h1>
+  <p class="hero-sub">
+    <span class="fr-only">Luxe<span>·</span>Créativité<span>·</span>Ambition</span>
+    <span class="en-only">Luxury<span>·</span>Creativity<span>·</span>Ambition</span>
+  </p>
+  <p class="hero-desc">
+    <span class="fr-only">Étudiante en Marketing du Luxe, ambassadrice EIML Paris, future stagiaire chez Printemps. Commercial, évènementiel, création.</span>
+    <span class="en-only">Luxury Marketing student, EIML Paris ambassador, incoming intern at Printemps. Sales, events, creation.</span>
+  </p>
+  <div class="scroll-indicator">
+    <span class="fr-only">Découvrir</span><span class="en-only">Discover</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <span class="section-eyebrow"><span class="fr-only">À propos</span><span class="en-only">About</span></span>
+    <h2 class="section-title">
+      <span class="fr-only">Créer, challenger, <em>aller plus loin.</em></span>
+      <span class="en-only">Create, challenge, <em>go further.</em></span>
+    </h2>
+    <div class="about-grid">
+      <div>
+        <div class="about-portrait">
+          <img src="asset/keyss-portrait.jpg" alt="Keyss Robigo, étudiante en Marketing du Luxe à l'EIML Paris">
+        </div>
+        <p class="about-portrait-cap">
+          <span class="fr-only">Paris · 2026</span>
+          <span class="en-only">Paris · 2026</span>
+        </p>
+      </div>
+      <div>
+        <div class="tags">
+          <span class="tag">EIML Paris</span>
+          <span class="tag">Ambassadrice</span>
+          <span class="tag">Printemps</span>
+          <span class="tag">LVMH Insights</span>
+          <span class="tag">Mandarin A1</span>
+          <span class="tag">English C1</span>
+          <span class="tag">Adobe Firefly</span>
+          <span class="tag">Photoshop</span>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-num">3</span>
+            <span class="stat-label"><span class="fr-only">langues parlées</span><span class="en-only">languages spoken</span></span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">2+</span>
+            <span class="stat-label"><span class="fr-only">ans d'entrepreneuriat</span><span class="en-only">years of entrepreneurship</span></span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">5+</span>
+            <span class="stat-label"><span class="fr-only">pays visités</span><span class="en-only">countries visited</span></span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">∞</span>
+            <span class="stat-label"><span class="fr-only">projets à venir</span><span class="en-only">projects ahead</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="about-text">
+        <p class="fr-only">Je m'appelle Keyss Robigo, étudiante en Bachelor Marketing du Luxe à l'EIML Paris et <strong style="color:var(--gold);font-weight:500">ambassadrice officielle</strong> de mon école. Ce qui m'attire dans cet univers, ce sont ses codes, ses défis et son exigence — mais ma vision va plus loin : créativité sans frontières, de la mode à l'évènementiel.</p>
+        <p class="en-only">My name is Keyss Robigo, a Bachelor's student in Luxury Marketing at EIML Paris and <strong style="color:var(--gold);font-weight:500">official ambassador</strong> for my school. What draws me to this world is its codes, its challenges, and its standards — but my vision reaches further: creativity without limits, from fashion to events.</p>
+
+        <p class="fr-only">En tant qu'ambassadrice, je représente l'école lors de JPO, concours d'entrée et salons étudiants. J'ai co-organisé le marché de Noël EIML 2025 (3 classes mobilisées) : démarchage des artistes, montage des reels diffusés sur les réseaux officiels de l'école.</p>
+        <p class="en-only">As an ambassador, I represent the school during open days, entrance exams, and student fairs. I co-organized the 2025 EIML Christmas Market (3 classes involved): scouting artists, editing reels broadcast on the school's official social channels.</p>
+
+        <p class="fr-only">Avant mes études, j'ai lancé GlomriaCosmetics — une ligne de gloss vegan gérée de A à Z depuis le lycée. Aujourd'hui, je prépare mon stage chez Printemps Haussmann, vise le LVMH Insights Certificate, et apprends le mandarin. Dans 5 ans ? Master en poche, construire quelque chose depuis l'Angleterre.</p>
+        <p class="en-only">Before my studies, I launched GlomriaCosmetics — a vegan lip gloss brand managed independently since high school. Today, I'm preparing my internship at Printemps Haussmann, targeting the LVMH Insights Certificate, and learning Mandarin. In 5 years? Master's degree in hand, building something from England.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS GRID -->
+<section class="projects" id="projects">
+  <div class="container">
+    <span class="section-eyebrow"><span class="fr-only">Projets</span><span class="en-only">Projects</span></span>
+    <h2 class="section-title">
+      <span class="fr-only"><em>Réalisations</em> sélectionnées</span>
+      <span class="en-only"><em>Selected</em> work</span>
+    </h2>
+    <div class="projects-grid">
+
+      <a href="#detail-marche" class="project-card featured">
+        <span class="project-num">01 — <span class="fr-only">Projet phare</span><span class="en-only">Featured</span></span>
+        <h3 class="project-title">
+          <span class="fr-only">Marché de Noël <em>EIML 2025</em></span>
+          <span class="en-only">EIML <em>Christmas Market 2025</em></span>
+        </h3>
+        <p class="project-meta"><span class="fr-only">Évènementiel · Prospection · Contenu</span><span class="en-only">Events · Outreach · Content</span></p>
+        <p class="project-desc">
+          <span class="fr-only">Co-organisation de A à Z d'un marché d'artisanat d'art : démarchage d'artistes, montage de reels diffusés sur les réseaux officiels de l'école.</span>
+          <span class="en-only">End-to-end co-organization of an artisanal art market: artist outreach, editing reels broadcast on the school's official channels.</span>
+        </p>
+        <span class="project-cta"><span class="fr-only">Voir le projet</span><span class="en-only">View project</span></span>
+      </a>
+
+      <a href="#detail-plexis" class="project-card">
+        <span class="project-num">02</span>
+        <h3 class="project-title">
+          <span class="fr-only">Plexis <em>Créations</em></span>
+          <span class="en-only">Plexis <em>Créations</em></span>
+        </h3>
+        <p class="project-meta"><span class="fr-only">Branding · Copywriting · Social</span><span class="en-only">Branding · Copywriting · Social</span></p>
+        <p class="project-desc">
+          <span class="fr-only">Direction communication d'une marque émergente en gravure et découpe laser : flyer, posts Instagram, prospection B2B.</span>
+          <span class="en-only">Communication direction for an emerging laser engraving brand: flyer, Instagram posts, B2B outreach.</span>
+        </p>
+        <span class="project-cta"><span class="fr-only">Voir le projet</span><span class="en-only">View project</span></span>
+      </a>
+
+      <a href="#detail-glomria" class="project-card">
+        <span class="project-num">03</span>
+        <h3 class="project-title">
+          <span class="fr-only">Glomria <em>Cosmetics</em></span>
+          <span class="en-only">Glomria <em>Cosmetics</em></span>
+        </h3>
+        <p class="project-meta"><span class="fr-only">Entrepreneuriat · Beauté · Brand</span><span class="en-only">Entrepreneurship · Beauty · Brand</span></p>
+        <p class="project-desc">
+          <span class="fr-only">Marque de gloss vegan lancée et gérée de A à Z depuis le lycée : produit, charte graphique, e-commerce, social media.</span>
+          <span class="en-only">Vegan lip gloss brand launched and run independently from high school: product, brand identity, e-commerce, social media.</span>
+        </p>
+        <span class="project-cta"><span class="fr-only">Voir le projet</span><span class="en-only">View project</span></span>
+      </a>
+
+      <a href="#detail-celine" class="project-card">
+        <span class="project-num">04</span>
+        <h3 class="project-title">
+          <span class="fr-only">Moodboard <em>Celine</em></span>
+          <span class="en-only">Celine <em>Moodboard</em></span>
+        </h3>
+        <p class="project-meta"><span class="fr-only">Direction artistique · Luxe · Codes</span><span class="en-only">Art direction · Luxury · Codes</span></p>
+        <p class="project-desc">
+          <span class="fr-only">Analyse visuelle de Celine ère Hedi Slimane (2018–2024) — produits iconiques, palette, monogramme Triomphe, codes maison.</span>
+          <span class="en-only">Visual analysis of Celine in the Hedi Slimane era (2018–2024) — iconic products, palette, Triomphe monogram, house codes.</span>
+        </p>
+        <span class="project-cta"><span class="fr-only">Voir le projet</span><span class="en-only">View project</span></span>
+      </a>
+
+      <a href="#detail-retail" class="project-card">
+        <span class="project-num">05</span>
+        <h3 class="project-title">
+          <span class="fr-only">Étude retail <em>éco-responsable</em></span>
+          <span class="en-only">Retail <em>Sustainability Study</em></span>
+        </h3>
+        <p class="project-meta"><span class="fr-only">Analyse · Luxe · Retail</span><span class="en-only">Analysis · Luxury · Retail</span></p>
+        <p class="project-desc">
+          <span class="fr-only">Analyse comparative des pratiques durables — Stella McCartney & Marine Serre chez Galeries Lafayette Haussmann.</span>
+          <span class="en-only">Comparative analysis of sustainable practices — Stella McCartney & Marine Serre at Galeries Lafayette Haussmann.</span>
+        </p>
+        <span class="project-cta"><span class="fr-only">Voir le projet</span><span class="en-only">View project</span></span>
+      </a>
+
+      <a href="#detail-tomatoes" class="project-card">
+        <span class="project-num">06</span>
+        <h3 class="project-title">
+          <span class="fr-only">KEYSS <em>Tomatoes</em></span>
+          <span class="en-only">KEYSS <em>Tomatoes</em></span>
+        </h3>
+        <p class="project-meta"><span class="fr-only">DA · Firefly · Photoshop</span><span class="en-only">Art direction · Firefly · Photoshop</span></p>
+        <p class="project-desc">
+          <span class="fr-only">Affiche publicitaire fictive créée avec Adobe Firefly et Photoshop. Concept immersif et exploration du prompt design.</span>
+          <span class="en-only">Fictional advertising poster created with Adobe Firefly and Photoshop. Immersive concept and prompt design exploration.</span>
+        </p>
+        <span class="project-cta"><span class="fr-only">Voir le projet</span><span class="en-only">View project</span></span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== DETAILED SECTIONS ==================== -->
+
+<!-- MARCHÉ DE NOËL -->
+<section class="project-detail" id="detail-marche">
+  <div class="detail-header">
+    <span class="detail-num">01</span>
+    <div>
+      <span class="detail-meta"><span class="fr-only">Décembre 2025 · Projet EIML Paris</span><span class="en-only">December 2025 · EIML Paris Project</span></span>
+      <h2 class="detail-title">
+        <span class="fr-only">Marché de Noël <em>Artisanat d'Art</em></span>
+        <span class="en-only">Christmas Market — <em>Artisanal Art</em></span>
+      </h2>
+    </div>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-text">
+      <p class="lead">
+        <span class="fr-only">Un projet évènementiel mené de A à Z, du démarchage des artistes à la promotion sur les réseaux officiels.</span>
+        <span class="en-only">An event project led end-to-end, from artist outreach to promotion on official social channels.</span>
+      </p>
+      <p>
+        <span class="fr-only">Dans le cadre d'un projet EIML mobilisant trois classes, j'ai co-organisé un marché de Noël dédié à l'artisanat d'art. Le défi : trouver des artistes indépendants, organiser leur venue, et faire venir le public.</span>
+        <span class="en-only">As part of an EIML project involving three classes, I co-organized a Christmas market dedicated to artisanal art. The challenge: finding independent artists, organizing their visit, and bringing in the audience.</span>
+      </p>
+      <ul class="detail-list">
+        <li><span class="fr-only">Prospection et démarchage des artistes exposants</span><span class="en-only">Prospecting and outreach to participating artists</span></li>
+        <li><span class="fr-only">Coordination logistique de l'évènement</span><span class="en-only">Event logistics coordination</span></li>
+        <li><span class="fr-only">Tournage et montage de reels pour les réseaux officiels EIML</span><span class="en-only">Filming and editing reels for EIML's official channels</span></li>
+        <li><span class="fr-only">Mise en scène visuelle (paquets blancs, rubans violets, identité commune)</span><span class="en-only">Visual staging (white packages, purple ribbons, common identity)</span></li>
+      </ul>
+      <div class="detail-result">
+        <span class="detail-result-label"><span class="fr-only">Résultat</span><span class="en-only">Outcome</span></span>
+        <p class="detail-result-text">
+          <span class="fr-only">"L'artiste que j'ai personnellement recrutée s'est avérée la plus visitée du marché."</span>
+          <span class="en-only">"The artist I personally recruited turned out to be the most visited at the market."</span>
+        </p>
+      </div>
+    </div>
+    <div class="gallery gallery-marche">
+      <div class="gallery-item"><img src="asset/marche-noel-1.jpg" alt="Préparation du marché de Noël EIML"></div>
+      <div class="gallery-item"><img src="asset/marche-noel-2.jpg" alt="Paquets cadeaux décoratifs"></div>
+      <div class="gallery-item"><img src="asset/marche-noel-3.jpg" alt="Mise en scène vitrine"></div>
+      <div class="gallery-item"><img src="asset/marche-noel-4.jpg" alt="Action sur l'évènement"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLEXIS CRÉATIONS -->
+<section class="project-detail" id="detail-plexis">
+  <div class="detail-header">
+    <span class="detail-num">02</span>
+    <div>
+      <span class="detail-meta"><span class="fr-only">2026 · Mission communication</span><span class="en-only">2026 · Communication mission</span></span>
+      <h2 class="detail-title">
+        <span class="fr-only">Plexis <em>Créations</em></span>
+        <span class="en-only">Plexis <em>Créations</em></span>
+      </h2>
+    </div>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-text">
+      <p class="lead">
+        <span class="fr-only">Accompagnement d'une marque émergente sur sa communication, son identité et sa stratégie de visibilité.</span>
+        <span class="en-only">Supporting an emerging brand on its communication, identity, and visibility strategy.</span>
+      </p>
+      <p>
+        <span class="fr-only">Plexis Créations est une marque spécialisée en gravure et découpe laser sur plexiglas. J'accompagne l'équipe sur l'ensemble de leur communication : supports print, contenu réseaux sociaux et prospection commerciale.</span>
+        <span class="en-only">Plexis Créations is a brand specializing in laser engraving and cutting on plexiglass. I support the team on their full communication: print materials, social media content, and commercial outreach.</span>
+      </p>
+      <ul class="detail-list">
+        <li><span class="fr-only">Conception du flyer A5 recto-verso pour démarchage B2B</span><span class="en-only">A5 double-sided flyer design for B2B outreach</span></li>
+        <li><span class="fr-only">Création de visuels Instagram (posts et stories)</span><span class="en-only">Instagram visuals creation (posts and stories)</span></li>
+        <li><span class="fr-only">Rédaction d'emails de prospection B2B</span><span class="en-only">B2B prospecting emails copywriting</span></li>
+        <li><span class="fr-only">Stratégie d'avis clients et acquisition de visibilité</span><span class="en-only">Customer reviews strategy and visibility acquisition</span></li>
+      </ul>
+    </div>
+    <div class="gallery gallery-plexis">
+      <div class="gallery-item"><img src="asset/plexis-flyer-recto.jpg" alt="Flyer Plexis recto"></div>
+      <div class="gallery-item"><img src="asset/plexis-flyer-verso.jpg" alt="Flyer Plexis verso"></div>
+      <div class="gallery-item"><img src="asset/plexis-post-avis.png" alt="Post Instagram Avis Clients"></div>
+      <div class="gallery-item"><img src="asset/plexis-story.jpeg" alt="Story Instagram Vos Avis"></div>
+    </div>
+  </div>
+</section>
+
+<!-- GLOMRIA COSMETICS -->
+<section class="project-detail" id="detail-glomria">
+  <div class="detail-header">
+    <span class="detail-num">03</span>
+    <div>
+      <span class="detail-meta"><span class="fr-only">Depuis le lycée · Entrepreneuriat indépendant</span><span class="en-only">Since high school · Independent entrepreneurship</span></span>
+      <h2 class="detail-title">
+        <span class="fr-only">Glomria <em>Cosmetics</em></span>
+        <span class="en-only">Glomria <em>Cosmetics</em></span>
+      </h2>
+    </div>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-text">
+      <p class="lead">
+        <span class="fr-only">Une marque de gloss vegan que j'ai créée, formulée, marketée et vendue en complète autonomie.</span>
+        <span class="en-only">A vegan lip gloss brand I created, formulated, marketed, and sold entirely on my own.</span>
+      </p>
+      <p>
+        <span class="fr-only">GlomriaCosmetics est née au lycée de la volonté de bâtir quelque chose à mon image : une beauté éthique, glamour et responsable. Du choix des ingrédients à la livraison, j'ai tout géré seule — une école accélérée du marketing.</span>
+        <span class="en-only">GlomriaCosmetics was born in high school from the desire to build something true to me: ethical, glamorous, and responsible beauty. From ingredient selection to delivery, I managed everything alone — an accelerated marketing school.</span>
+      </p>
+      <ul class="detail-list">
+        <li><span class="fr-only">Formulation : gloss vegans, vitamine E, huile de coco, senteurs fruitées</span><span class="en-only">Formulation: vegan glosses, vitamin E, coconut oil, fruity scents</span></li>
+        <li><span class="fr-only">Création de l'identité visuelle complète (logo, charte, typographie)</span><span class="en-only">Full brand identity creation (logo, guidelines, typography)</span></li>
+        <li><span class="fr-only">Site e-commerce glomriacosmetics.com — gestion produits et commandes</span><span class="en-only">E-commerce site glomriacosmetics.com — product and order management</span></li>
+        <li><span class="fr-only">Stratégie social media : Instagram, TikTok, contenu photo et vidéo</span><span class="en-only">Social media strategy: Instagram, TikTok, photo and video content</span></li>
+      </ul>
+      <div class="detail-result">
+        <span class="detail-result-label"><span class="fr-only">Ce que j'en retire</span><span class="en-only">What I take from it</span></span>
+        <p class="detail-result-text">
+          <span class="fr-only">"Bâtir une marque seule m'a appris ce qu'aucun cours ne pouvait m'enseigner."</span>
+          <span class="en-only">"Building a brand alone taught me what no class ever could."</span>
+        </p>
+      </div>
+    </div>
+    <div class="gallery gallery-glomria">
+      <div class="gallery-item gallery-charte"><img src="asset/glomria-charte.png" alt="Charte graphique Glomria Cosmetics"></div>
+      <div class="gallery-item"><img src="asset/glomria-ecommerce.png" alt="Site e-commerce Glomria Cosmetics"></div>
+      <div class="gallery-item"><img src="asset/glomria-produit.jpg" alt="Photo produit Glomria red excellence"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CELINE -->
+<section class="project-detail" id="detail-celine">
+  <div class="detail-header">
+    <span class="detail-num">04</span>
+    <div>
+      <span class="detail-meta"><span class="fr-only">2025 · Projet EIML · Direction artistique</span><span class="en-only">2025 · EIML Project · Art direction</span></span>
+      <h2 class="detail-title">
+        <span class="fr-only">Moodboard <em>Celine</em></span>
+        <span class="en-only">Celine <em>Moodboard</em></span>
+      </h2>
+    </div>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-text">
+      <p class="lead">
+        <span class="fr-only">Une lecture visuelle de Celine ère Hedi Slimane — codes, palette, savoir-faire et héritage français.</span>
+        <span class="en-only">A visual reading of Celine in the Hedi Slimane era — codes, palette, craftsmanship, and French heritage.</span>
+      </p>
+      <p>
+        <span class="fr-only">Moodboard physique au format carton plume, conçu pour synthétiser l'ADN de la Maison Celine entre 2018 et 2024. L'objectif : identifier les éléments qui rendent une marque immédiatement reconnaissable et désirable.</span>
+        <span class="en-only">Physical moodboard on foam board, designed to synthesize Celine's DNA between 2018 and 2024. The goal: identifying the elements that make a brand instantly recognizable and desirable.</span>
+      </p>
+      <ul class="detail-list">
+        <li><span class="fr-only">Identification du monogramme Triomphe comme emblème central</span><span class="en-only">Identifying the Triomphe monogram as the central emblem</span></li>
+        <li><span class="fr-only">Palette tan, camel, ivoire, bordeaux et noir</span><span class="en-only">Tan, camel, ivory, burgundy and black palette</span></li>
+        <li><span class="fr-only">Produits iconiques : Triomphe bag, Luggage, Ava, lunettes</span><span class="en-only">Iconic products: Triomphe bag, Luggage, Ava, sunglasses</span></li>
+        <li><span class="fr-only">Mots-clés : Maison française, Effortless, Intemporel, Héritage</span><span class="en-only">Keywords: French house, Effortless, Timeless, Heritage</span></li>
+      </ul>
+    </div>
+    <div class="gallery gallery-celine">
+      <div class="gallery-item"><img src="asset/celine-moodboard.jpg" alt="Moodboard Celine"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <h2 class="contact-title">
+    <span class="fr-only">Parlons <em>ensemble</em></span>
+    <span class="en-only">Let's <em>connect</em></span>
+  </h2>
+  <p>
+    <span class="fr-only">Une collaboration, un échange, une opportunité ? Je suis à l'écoute.</span>
+    <span class="en-only">A collaboration, an exchange, an opportunity? I'd love to hear from you.</span>
+  </p>
+  <a href="mailto:k.robigo@myskolae.fr" class="contact-btn"><span class="fr-only">Me contacter</span><span class="en-only">Get in touch</span></a>
+  <a href="mailto:k.robigo@myskolae.fr" class="contact-email">k.robigo@myskolae.fr</a>
+</section>
+
+<footer>
+  <span class="logo">Keyss Robigo</span>
+  <p>© 2026 · EIML Paris · <span class="fr-only">Tous droits réservés</span><span class="en-only">All rights reserved</span></p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" aria-label="Fermer">×</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+function toggleLang(){document.body.classList.toggle('lang-en')}
+document.querySelectorAll('.gallery-item img').forEach(img=>{
+  img.addEventListener('click',e=>{
+    e.stopPropagation();
+    const lb=document.getElementById('lightbox');
+    document.getElementById('lightbox-img').src=img.src;
+    document.getElementById('lightbox-img').alt=img.alt;
+    lb.classList.add('active');
+  });
+});
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
+</script>
+
+</body>
+</html>
