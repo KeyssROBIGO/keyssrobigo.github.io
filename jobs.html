@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Job Search — Keyss 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.0.0/dist/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --ink:#0A0A0F;--ink2:#3A3A50;--ink3:#7878A0;--ink4:#C0C0D0;
+  --bg:#F4F3F0;--surface:#FFFFFF;--card:#FAFAF8;--hover:#F0EFF0;
+  --blue:#2B5BE8;--blue-bg:#EEF2FD;--blue-border:#C5D3F8;
+  --gold:#B8922A;--gold-bg:#FBF6EC;--gold-border:#E8D5A3;
+  --green:#157A52;--green-bg:#EAF7F2;--green-border:#A8D5C5;
+  --amber:#A04A05;--amber-bg:#FEF3E2;--amber-border:#F5C99A;
+  --red:#8B1A1A;--red-bg:#FEF2F2;--red-border:#F5C0C0;
+  --purple:#4A30A0;--purple-bg:#F0EDF8;--purple-border:#C9BDE8;
+  --forest:#156030;--forest-bg:#EDF7F0;--forest-border:#A8D5B5;
+  --b:rgba(10,10,15,0.07);--bs:rgba(10,10,15,0.12);--bss:rgba(10,10,15,0.18);
+  --r:8px;--r2:12px;--r3:16px;
+  --shadow:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.06);
+  --shadow-lg:0 8px 32px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.06);
+}
+
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;line-height:1.5}
+button{font-family:'DM Sans',sans-serif}
+input,select,textarea{font-family:'DM Sans',sans-serif}
+
+/* ─── LAYOUT ─── */
+.shell{display:grid;grid-template-columns:224px 1fr;min-height:100vh}
+.sidebar{background:var(--ink);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow:hidden}
+.sb-top{padding:22px 16px 18px;border-bottom:1px solid rgba(255,255,255,0.06);flex-shrink:0}
+.wm{font-family:'DM Serif Display',serif;font-size:15px;color:#fff;font-style:italic;line-height:1.2;letter-spacing:-.01em}
+.wm-s{display:block;font-family:'DM Sans',sans-serif;font-size:9px;font-style:normal;color:rgba(255,255,255,0.28);letter-spacing:.14em;font-weight:400;margin-top:4px;text-transform:uppercase}
+.nav{flex:1;padding:10px 6px;overflow-y:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.ns{font-size:9px;color:rgba(255,255,255,0.22);letter-spacing:.14em;font-weight:500;padding:14px 10px 5px;text-transform:uppercase}
+.ni{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:6px;font-size:12.5px;color:rgba(255,255,255,0.42);cursor:pointer;border:none;background:none;width:100%;text-align:left;font-family:'DM Sans',sans-serif;transition:all .15s;border-left:2px solid transparent;letter-spacing:-.01em}
+.ni:hover{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.78)}
+.ni.on{background:rgba(43,91,232,0.16);color:#fff;border-left-color:var(--blue);font-weight:500}
+.ni i{font-size:15px;flex-shrink:0;width:16px;opacity:.8}
+.ni.on i{opacity:1}
+.nb{margin-left:auto;font-size:10px;background:rgba(255,255,255,0.08);border-radius:20px;padding:1px 7px;color:rgba(255,255,255,0.32);min-width:22px;text-align:center}
+.ni.on .nb{background:rgba(43,91,232,0.3);color:rgba(255,255,255,0.75)}
+.sb-foot{padding:12px;border-top:1px solid rgba(255,255,255,0.06);flex-shrink:0}
+.avail{background:rgba(21,122,82,0.18);border:0.5px solid rgba(21,122,82,0.35);border-radius:10px;padding:10px 12px}
+.avail-row{display:flex;align-items:center;gap:7px;margin-bottom:2px}
+.avail-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse 2.5s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+.avail-t{font-size:11.5px;color:rgba(255,255,255,0.75);font-weight:500}
+.avail-s{font-size:10px;color:rgba(255,255,255,0.32);padding-left:13px}
+
+/* ─── MAIN ─── */
+.main{min-width:0;display:flex;flex-direction:column}
+.topbar{background:var(--surface);border-bottom:0.5px solid var(--b);padding:0 28px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:20;gap:12px}
+.tb-left{display:flex;align-items:center;gap:12px;min-width:0}
+.tb-title{font-family:'DM Serif Display',serif;font-size:17px;color:var(--ink);font-style:italic;white-space:nowrap}
+.tb-right{display:flex;gap:7px;flex-shrink:0}
+
+/* ─── BUTTONS ─── */
+.btn{font-size:12px;padding:7px 14px;border-radius:var(--r);cursor:pointer;font-weight:500;border:0.5px solid var(--bs);background:var(--surface);color:var(--ink2);transition:all .15s;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;line-height:1}
+.btn:hover{background:var(--hover);border-color:var(--bss)}
+.btn:active{transform:scale(.98)}
+.btn.acc{background:var(--blue);color:#fff;border-color:transparent;box-shadow:0 2px 8px rgba(43,91,232,.25)}
+.btn.acc:hover{background:#1e47cc;box-shadow:0 3px 12px rgba(43,91,232,.3)}
+.btn.danger{background:var(--red-bg);color:var(--red);border-color:var(--red-border)}
+.btn.danger:hover{background:#fde8e8}
+.btn.sm{font-size:11px;padding:5px 10px}
+.btn.icon{padding:7px;border-radius:var(--r)}
+.btn.ghost{border-color:transparent;background:transparent;color:var(--ink3)}
+.btn.ghost:hover{background:var(--hover);color:var(--ink)}
+
+/* ─── CONTENT ─── */
+.content{padding:22px 28px;flex:1}
+
+/* ─── KPI ─── */
+.kg{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:20px}
+.kpi{background:var(--surface);border:0.5px solid var(--b);border-radius:var(--r2);padding:14px 16px;transition:box-shadow .15s}
+.kpi:hover{box-shadow:var(--shadow)}
+.kn{font-size:30px;font-weight:500;line-height:1;font-family:'DM Serif Display',serif;color:var(--ink);letter-spacing:-.02em}
+.kn.a{color:var(--blue)}.kn.s{color:var(--green)}.kn.w{color:var(--amber)}
+.kl{font-size:10px;color:var(--ink3);margin-top:5px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.kpi-delta{font-size:10px;margin-top:3px;display:flex;align-items:center;gap:3px}
+
+/* ─── TWO COL ─── */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+.card{background:var(--surface);border:0.5px solid var(--b);border-radius:var(--r2);overflow:hidden;transition:box-shadow .15s}
+.card:hover{box-shadow:var(--shadow)}
+.ch{padding:13px 16px 11px;border-bottom:0.5px solid var(--b);display:flex;align-items:center;justify-content:space-between}
+.cht{font-size:12px;font-weight:500;color:var(--ink2);letter-spacing:-.01em}
+.cb{padding:13px 16px}
+
+/* ─── BARS ─── */
+.bi{margin-bottom:11px}.bi:last-child{margin-bottom:0}
+.bm{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--ink3);margin-bottom:5px}
+.bm strong{color:var(--ink);font-weight:500;font-size:12px}
+.bt{height:4px;background:var(--bg);border-radius:2px;overflow:hidden}
+.bf{height:100%;border-radius:2px;transition:width .7s cubic-bezier(.4,0,.2,1)}
+
+/* ─── REMINDERS ─── */
+.rr{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:0.5px solid var(--b)}
+.rr:last-child{border:none;padding-bottom:0}
+.rd{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.ri{flex:1;min-width:0}
+.rn{font-size:12px;font-weight:500;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rs{font-size:11px;color:var(--ink3);margin-top:1px}
+.rdate{font-size:10px;color:var(--ink4);flex-shrink:0;margin-top:3px;white-space:nowrap}
+
+/* ─── TABLE WRAP ─── */
+.tw{background:var(--surface);border:0.5px solid var(--b);border-radius:var(--r2);overflow:hidden;margin-bottom:14px;box-shadow:var(--shadow)}
+.th2{display:flex;border-bottom:0.5px solid var(--b);padding:0 6px;background:var(--card);overflow-x:auto;scrollbar-width:none}
+.th2::-webkit-scrollbar{display:none}
+.tab{font-size:11.5px;padding:9px 11px;cursor:pointer;color:var(--ink3);border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:'DM Sans',sans-serif;transition:color .15s;white-space:nowrap;letter-spacing:-.01em}
+.tab.on{color:var(--blue);border-bottom-color:var(--blue);font-weight:500}
+table{width:100%;border-collapse:collapse;table-layout:fixed}
+th{font-size:10px;font-weight:500;color:var(--ink3);letter-spacing:.06em;padding:9px 14px;text-align:left;border-bottom:0.5px solid var(--b);background:var(--card);text-transform:uppercase}
+td{padding:11px 14px;border-bottom:0.5px solid var(--b);font-size:12.5px;color:var(--ink);vertical-align:middle;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:background .1s}
+tr:last-child td{border:none}
+tr:hover td{background:var(--hover)}
+.add-r{display:flex;align-items:center;gap:8px;padding:10px 14px;font-size:12px;color:var(--ink3);cursor:pointer;border-top:0.5px solid var(--b);transition:all .15s}
+.add-r:hover{background:var(--blue-bg);color:var(--blue)}
+.add-r i{font-size:14px}
+
+/* ─── PILLS ─── */
+.pill{display:inline-flex;align-items:center;font-size:10.5px;padding:2px 8px;border-radius:20px;font-weight:500;white-space:nowrap;letter-spacing:-.01em}
+.ps{background:var(--blue-bg);color:var(--blue);border:0.5px solid var(--blue-border)}
+.pw{background:var(--amber-bg);color:var(--amber);border:0.5px solid var(--amber-border)}
+.po{background:var(--green-bg);color:var(--green);border:0.5px solid var(--green-border)}
+.pn{background:var(--red-bg);color:var(--red);border:0.5px solid var(--red-border)}
+.pm{background:var(--purple-bg);color:var(--purple);border:0.5px solid var(--purple-border)}
+.pl{background:var(--gold-bg);color:var(--gold);border:0.5px solid var(--gold-border)}
+.pmu{background:var(--card);border:0.5px solid var(--bs);color:var(--ink2)}
+.pret{background:var(--forest-bg);color:var(--forest);border:0.5px solid var(--forest-border)}
+
+/* ─── DELETE BTN ─── */
+.del-btn{background:none;border:none;cursor:pointer;color:var(--ink4);padding:4px 6px;border-radius:5px;font-size:14px;transition:all .15s;line-height:1;display:inline-flex;align-items:center}
+.del-btn:hover{color:var(--red);background:var(--red-bg)}
+
+/* ─── EDIT BTN ─── */
+.edit-btn{background:none;border:none;cursor:pointer;color:var(--ink4);padding:4px 6px;border-radius:5px;font-size:14px;transition:all .15s;line-height:1;display:inline-flex;align-items:center}
+.edit-btn:hover{color:var(--blue);background:var(--blue-bg)}
+
+/* ─── ACTIONS COL ─── */
+.act-col{display:flex;gap:2px;align-items:center;justify-content:flex-end}
+
+/* ─── MAGASINS ─── */
+.mag-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-bottom:14px}
+.mc{background:var(--surface);border:0.5px solid var(--b);border-radius:var(--r2);padding:13px 14px;transition:all .15s;cursor:default}
+.mc.pri{border-color:var(--purple);border-width:1px}
+.mc:hover{box-shadow:var(--shadow);border-color:var(--bs)}
+.mn{font-size:13px;font-weight:500;color:var(--ink);letter-spacing:-.01em}
+.mt{font-size:11px;color:var(--ink3);margin-top:1px}
+.mf{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.mz{font-size:10px;color:var(--ink3);display:flex;align-items:center;gap:3px}
+.ma{display:flex;gap:5px;margin-top:9px;flex-wrap:wrap;align-items:center}
+
+/* ─── FILTER BAR ─── */
+.fbar{display:flex;gap:6px;flex-wrap:wrap;padding:10px 14px;border-bottom:0.5px solid var(--b);background:var(--card)}
+
+/* ─── SECTION HEADER ─── */
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.sh-t{font-size:12px;font-weight:500;color:var(--ink2);letter-spacing:-.01em}
+.sh-lnk{font-size:11px;color:var(--blue);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;padding:0}
+
+/* ─── SEARCH BAR ─── */
+.search-wrap{position:relative;flex:1;max-width:280px}
+.search-wrap i{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--ink3);font-size:14px;pointer-events:none}
+.search-input{width:100%;padding:7px 10px 7px 30px;border:0.5px solid var(--bs);border-radius:var(--r);font-size:12px;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);transition:border-color .15s}
+.search-input:focus{outline:none;border-color:var(--blue);background:var(--surface)}
+
+/* ─── MODAL ─── */
+.ov{display:none;position:fixed;inset:0;background:rgba(10,10,15,0.55);z-index:200;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
+.ov.open{display:flex}
+.modal{background:var(--surface);border:0.5px solid var(--bs);border-radius:var(--r3);padding:0;width:380px;max-height:92vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-lg)}
+.modal-h{padding:20px 22px 16px;border-bottom:0.5px solid var(--b);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.modal-t{font-family:'DM Serif Display',serif;font-size:16px;font-style:italic;color:var(--ink)}
+.modal-body{padding:18px 22px;overflow-y:auto;flex:1}
+.modal-foot{padding:14px 22px;border-top:0.5px solid var(--b);display:flex;gap:8px;justify-content:flex-end;flex-shrink:0}
+.field{margin-bottom:13px}
+.field:last-child{margin-bottom:0}
+.field label{font-size:10px;color:var(--ink3);display:block;margin-bottom:5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+.field input,.field select,.field textarea{width:100%;padding:9px 11px;border:0.5px solid var(--bs);border-radius:var(--r);font-size:13px;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);transition:border-color .15s;line-height:1.4}
+.field textarea{resize:vertical;min-height:70px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);background:var(--surface)}
+.ferr{font-size:11px;color:var(--red);margin-top:4px;display:none}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* ─── TOAST ─── */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--ink);color:#fff;padding:10px 18px;border-radius:var(--r2);font-size:12.5px;display:none;z-index:300;opacity:0;transition:opacity .2s,transform .2s;box-shadow:var(--shadow-lg);white-space:nowrap}
+.toast.show{display:block;opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ─── EMPTY STATE ─── */
+.empty{text-align:center;padding:40px 20px;color:var(--ink3)}
+.empty i{font-size:32px;display:block;margin-bottom:10px;opacity:.4}
+.empty-t{font-size:14px;font-weight:500;color:var(--ink2);margin-bottom:4px}
+.empty-s{font-size:12px}
+
+/* ─── VIEWS ─── */
+.view{display:none}.view.on{display:block}
+
+/* ─── EXPORT BAR ─── */
+.export-bar{display:flex;gap:8px;margin-bottom:16px;align-items:center;flex-wrap:wrap}
+.export-bar span{font-size:12px;color:var(--ink3);margin-right:4px}
+
+/* ─── NOTE TAG ─── */
+.note-tag{display:inline-flex;align-items:center;gap:4px;font-size:10px;color:var(--ink3);background:var(--bg);border:0.5px solid var(--b);border-radius:4px;padding:1px 6px;margin-top:3px}
+
+/* ─── MOBILE ─── */
+@media(max-width:800px){
+  .shell{grid-template-columns:1fr}
+  .sidebar{position:fixed;bottom:0;left:0;right:0;height:auto;flex-direction:row;z-index:50;border-top:0.5px solid rgba(255,255,255,0.08)}
+  .sb-top,.sb-foot,.ns{display:none}
+  .nav{display:flex;flex-direction:row;padding:2px 4px;overflow-x:auto;gap:0;align-items:stretch}
+  .ni{flex-direction:column;gap:2px;padding:6px 8px;font-size:9px;border-left:none;border-top:2px solid transparent;border-radius:0;min-width:54px;justify-content:center;align-items:center;letter-spacing:0}
+  .ni.on{border-top-color:var(--blue);border-left:none;background:rgba(43,91,232,.1)}
+  .ni i{font-size:19px;width:auto}
+  .nb{display:none}
+  .main{padding-bottom:58px}
+  .kg{grid-template-columns:repeat(2,1fr);gap:9px}
+  .two{grid-template-columns:1fr}
+  .mag-grid{grid-template-columns:1fr 1fr}
+  .content{padding:14px 16px}
+  .topbar{padding:0 16px;height:50px}
+  .tb-title{font-size:15px}
+  .search-wrap{max-width:none;flex:1}
+  .modal{width:calc(100vw - 24px);max-height:85vh}
+  .field-row{grid-template-columns:1fr}
+  .export-bar{gap:6px}
+}
+@media(max-width:480px){
+  .mag-grid{grid-template-columns:1fr}
+  .kg{grid-template-columns:repeat(2,1fr)}
+}
+/* ─── CALENDRIER ─── */
+.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.cal-month{font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:var(--ink)}
+.cal-grid{background:var(--surface);border:0.5px solid var(--b);border-radius:var(--r2);overflow:hidden;box-shadow:var(--shadow)}
+.cal-dow{display:grid;grid-template-columns:repeat(7,1fr);background:var(--card);border-bottom:0.5px solid var(--b)}
+.cal-dow span{font-size:10px;font-weight:500;color:var(--ink3);text-align:center;padding:8px 4px;letter-spacing:.06em;text-transform:uppercase}
+.cal-days{display:grid;grid-template-columns:repeat(7,1fr)}
+.cal-day{min-height:80px;border-right:0.5px solid var(--b);border-bottom:0.5px solid var(--b);padding:6px 7px;position:relative;transition:background .12s}
+.cal-day:nth-child(7n){border-right:none}
+.cal-day:hover{background:var(--hover)}
+.cal-day.other{background:var(--card)}
+.cal-day.today .cal-dn{background:var(--blue);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center}
+.cal-dn{font-size:12px;font-weight:500;color:var(--ink2);margin-bottom:4px;width:22px;height:22px;display:flex;align-items:center;justify-content:center}
+.cal-day.other .cal-dn{color:var(--ink4)}
+.cal-ev{font-size:10px;padding:2px 5px;border-radius:4px;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;font-weight:500;line-height:1.4}
+.cal-ev.ev-rel{background:var(--amber-bg);color:var(--amber);border-left:2px solid var(--amber)}
+.cal-ev.ev-rep{background:var(--green-bg);color:var(--green);border-left:2px solid var(--green)}
+.cal-ev.ev-env{background:var(--blue-bg);color:var(--blue);border-left:2px solid var(--blue)}
+.cal-ev.ev-mag{background:var(--purple-bg);color:var(--purple);border-left:2px solid var(--purple)}
+.cal-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+.cal-leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--ink3)}
+.cal-leg-dot{width:8px;height:8px;border-radius:2px}
+.cal-add{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+@media(max-width:800px){.cal-day{min-height:54px;padding:4px 4px}.cal-ev{font-size:9px;padding:1px 3px}.cal-dow span{font-size:9px;padding:6px 2px}}
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-top">
+      <div class="wm">Job Search<span class="wm-s">Keyss · Rentrée 2026</span></div>
+    </div>
+    <nav class="nav">
+      <div class="ns">Suivi</div>
+      <button class="ni on" id="ni-dash" onclick="goView('dash')"><i class="ti ti-layout-dashboard"></i>Dashboard<span class="nb" id="nb-tot">0</span></button>
+      <button class="ni" id="ni-all" onclick="goView('all')"><i class="ti ti-send"></i>Candidatures</button>
+      <button class="ni" id="ni-relances" onclick="goView('relances')"><i class="ti ti-bell"></i>Relances<span class="nb" id="nb-rel">0</span></button>
+      <button class="ni" id="ni-magasins" onclick="goView('magasins')"><i class="ti ti-building-store"></i>Magasins<span class="nb" id="nb-mag">0</span></button>
+      <button class="ni" id="ni-calendrier" onclick="goView('calendrier')"><i class="ti ti-calendar"></i>Calendrier</button>
+      <div class="ns">Secteurs</div>
+      <button class="ni" id="ni-musique" onclick="goSector('musique')"><i class="ti ti-music"></i>Musique<span class="nb" id="nb-mus">0</span></button>
+      <button class="ni" id="ni-luxe" onclick="goSector('luxe')"><i class="ti ti-diamond"></i>Luxe & retail<span class="nb" id="nb-lux">0</span></button>
+      <button class="ni" id="ni-retail" onclick="goSector('retail')"><i class="ti ti-shopping-cart"></i>Retail généraliste<span class="nb" id="nb-ret">0</span></button>
+    </nav>
+    <div class="sb-foot">
+      <div class="avail">
+        <div class="avail-row"><span class="avail-dot"></span><span class="avail-t">Disponible</span></div>
+        <div class="avail-s">Lun–Mar · Paris · 6 mois</div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div class="tb-left">
+        <div class="tb-title" id="page-title">Vue d'ensemble</div>
+      </div>
+      <div class="tb-right">
+        <button class="btn ghost icon" onclick="exportCSV()" title="Exporter CSV"><i class="ti ti-download"></i></button>
+        <button class="btn" onclick="openModal('cand')"><i class="ti ti-plus"></i><span class="hide-xs">Ajouter</span></button>
+        <button class="btn acc" onclick="copyLMPrompt()"><i class="ti ti-sparkles"></i><span class="hide-xs">LM spontanée</span></button>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- DASHBOARD -->
+      <div id="view-dash" class="view on">
+        <div class="kg">
+          <div class="kpi"><div class="kn a" id="k-tot">0</div><div class="kl">Total envoyées</div></div>
+          <div class="kpi"><div class="kn" id="k-att">0</div><div class="kl">En attente</div></div>
+          <div class="kpi"><div class="kn w" id="k-rel">0</div><div class="kl">À relancer</div></div>
+          <div class="kpi"><div class="kn s" id="k-rep">0</div><div class="kl">Réponses +</div></div>
+        </div>
+        <div class="two">
+          <div class="card">
+            <div class="ch"><span class="cht">Répartition par secteur</span></div>
+            <div class="cb">
+              <div class="bi"><div class="bm"><span>Musique</span><strong id="b-mus">0</strong></div><div class="bt"><div class="bf" id="bf-mus" style="background:var(--blue);width:0%"></div></div></div>
+              <div class="bi"><div class="bm"><span>Luxe & retail</span><strong id="b-lux">0</strong></div><div class="bt"><div class="bf" id="bf-lux" style="background:var(--gold);width:0%"></div></div></div>
+              <div class="bi"><div class="bm"><span>Retail généraliste</span><strong id="b-ret">0</strong></div><div class="bt"><div class="bf" id="bf-ret" style="background:var(--forest);width:0%"></div></div></div>
+              <div class="bi" style="margin-bottom:0"><div class="bm"><span>Taux de réponse</span><strong style="color:var(--green)" id="b-taux">0%</strong></div><div class="bt"><div class="bf" id="bf-taux" style="background:var(--green);width:0%"></div></div></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="ch"><span class="cht">Relances à venir</span></div>
+            <div class="cb" id="relances-dash"></div>
+          </div>
+        </div>
+        <div class="sh">
+          <span class="sh-t">Candidatures récentes</span>
+          <button class="sh-lnk" onclick="goView('all')">Voir tout →</button>
+        </div>
+        <div class="tw">
+          <div class="th2" id="dash-tabs">
+            <button class="tab on" onclick="dashTab('all',this)">Toutes</button>
+            <button class="tab" onclick="dashTab('envoyé',this)">Envoyées</button>
+            <button class="tab" onclick="dashTab('relance',this)">À relancer</button>
+            <button class="tab" onclick="dashTab('réponse',this)">Réponses</button>
+          </div>
+          <div style="overflow-x:auto"><table>
+            <colgroup><col style="width:28%"><col style="width:26%"><col style="width:16%"><col style="width:18%"><col style="width:12%"></colgroup>
+            <thead><tr><th>Entreprise</th><th>Poste</th><th>Secteur</th><th>Statut</th><th></th></tr></thead>
+            <tbody id="tb-dash"></tbody>
+          </table></div>
+          <div class="add-r" onclick="openModal('cand')"><i class="ti ti-plus"></i>Ajouter une candidature</div>
+        </div>
+      </div>
+
+      <!-- TOUTES CANDIDATURES -->
+      <div id="view-all" class="view">
+        <div style="display:flex;gap:10px;margin-bottom:14px;align-items:center;flex-wrap:wrap">
+          <div class="search-wrap">
+            <i class="ti ti-search"></i>
+            <input type="text" class="search-input" id="search-all" placeholder="Rechercher…" oninput="renderAll()">
+          </div>
+          <select style="font-size:12px;padding:7px 10px;border:0.5px solid var(--bs);border-radius:var(--r);background:var(--surface);color:var(--ink2);cursor:pointer" id="filter-sec" onchange="renderAll()">
+            <option value="">Tous secteurs</option>
+            <option value="musique">Musique</option>
+            <option value="luxe">Luxe & retail</option>
+            <option value="retail">Retail généraliste</option>
+          </select>
+          <select style="font-size:12px;padding:7px 10px;border:0.5px solid var(--bs);border-radius:var(--r);background:var(--surface);color:var(--ink2);cursor:pointer" id="filter-st" onchange="renderAll()">
+            <option value="">Tous statuts</option>
+            <option value="envoyé">Envoyées</option>
+            <option value="relance">À relancer</option>
+            <option value="réponse">Réponses +</option>
+            <option value="refus">Refus</option>
+          </select>
+        </div>
+        <div class="tw">
+          <div style="overflow-x:auto"><table>
+            <colgroup><col style="width:22%"><col style="width:22%"><col style="width:13%"><col style="width:13%"><col style="width:12%"><col style="width:11%"><col style="width:7%"></colgroup>
+            <thead><tr><th>Entreprise</th><th>Poste</th><th>Secteur</th><th>Statut</th><th>Date</th><th>Notes</th><th></th></tr></thead>
+            <tbody id="tb-all"></tbody>
+          </table></div>
+          <div class="add-r" onclick="openModal('cand')"><i class="ti ti-plus"></i>Ajouter une candidature</div>
+        </div>
+        <div style="font-size:11px;color:var(--ink4);text-align:right" id="count-all"></div>
+      </div>
+
+      <!-- RELANCES -->
+      <div id="view-relances" class="view">
+        <div class="export-bar">
+          <span>Toutes les relances à planifier</span>
+          <button class="btn sm" onclick="copyRelanceAll()"><i class="ti ti-copy"></i>Copier tous les prompts</button>
+        </div>
+        <div id="rel-list"></div>
+      </div>
+
+      <!-- MAGASINS -->
+      <div id="view-magasins" class="view">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px">
+          <div class="search-wrap" style="max-width:260px">
+            <i class="ti ti-search"></i>
+            <input type="text" class="search-input" id="search-mag" placeholder="Rechercher…" oninput="renderMags()">
+          </div>
+          <button class="btn" onclick="openModal('mag')"><i class="ti ti-plus"></i>Ajouter un magasin</button>
+        </div>
+        <div class="tw" style="margin-bottom:14px">
+          <div class="fbar" id="mag-filters">
+            <button class="tab on" onclick="magTab('all',this)">Tous</button>
+            <button class="tab" onclick="magTab('à démarcher',this)">À démarcher</button>
+            <button class="tab" onclick="magTab('envoyé',this)">CV envoyé</button>
+            <button class="tab" onclick="magTab('relance',this)">À relancer</button>
+            <button class="tab" onclick="magTab('réponse',this)">Réponses</button>
+          </div>
+        </div>
+        <div class="mag-grid" id="mag-grid"></div>
+        <div style="font-size:11px;color:var(--ink4)" id="count-mag"></div>
+      </div>
+
+      <!-- CALENDRIER -->
+      <div id="view-calendrier" class="view">
+        <div class="cal-nav">
+          <div class="cal-month" id="cal-month-label">Septembre 2026</div>
+          <div style="display:flex;gap:6px">
+            <button class="btn icon" onclick="calPrev()"><i class="ti ti-chevron-left"></i></button>
+            <button class="btn sm" onclick="calToday()">Aujourd'hui</button>
+            <button class="btn icon" onclick="calNext()"><i class="ti ti-chevron-right"></i></button>
+          </div>
+        </div>
+        <div class="cal-grid">
+          <div class="cal-dow">
+            <span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span><span>Dim</span>
+          </div>
+          <div class="cal-days" id="cal-days"></div>
+        </div>
+        <div class="cal-legend">
+          <div class="cal-leg-item"><div class="cal-leg-dot" style="background:var(--amber-bg);border:1.5px solid var(--amber)"></div>À relancer</div>
+          <div class="cal-leg-item"><div class="cal-leg-dot" style="background:var(--green-bg);border:1.5px solid var(--green)"></div>Réponse +</div>
+          <div class="cal-leg-item"><div class="cal-leg-dot" style="background:var(--blue-bg);border:1.5px solid var(--blue)"></div>Candidature envoyée</div>
+          <div class="cal-leg-item"><div class="cal-leg-dot" style="background:var(--purple-bg);border:1.5px solid var(--purple)"></div>Magasin</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- MODAL candidature -->
+<div class="ov" id="ov-cand">
+  <div class="modal">
+    <div class="modal-h">
+      <div class="modal-t" id="cand-modal-title">Nouvelle candidature</div>
+      <button class="btn ghost icon" onclick="closeModal('cand')"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="f-idx" value="">
+      <div class="field-row">
+        <div class="field"><label>Entreprise *</label><input type="text" id="f-co" placeholder="Sony Music France"><div class="ferr" id="fe-co">Champ requis.</div></div>
+        <div class="field"><label>Date</label><input type="text" id="f-dt" placeholder="Sept 26"></div>
+      </div>
+      <div class="field"><label>Poste visé</label><input type="text" id="f-role" placeholder="Assistant marketing"></div>
+      <div class="field-row">
+        <div class="field"><label>Secteur</label><select id="f-sec"><option value="musique">Musique</option><option value="luxe">Luxe & retail</option><option value="retail">Retail généraliste</option></select></div>
+        <div class="field"><label>Statut</label><select id="f-st"><option value="envoyé">Envoyée</option><option value="relance">À relancer</option><option value="réponse">Réponse positive</option><option value="refus">Refus</option></select></div>
+      </div>
+      <div class="field"><label>Contact</label><input type="text" id="f-contact" placeholder="Prénom Nom · email@label.com"></div>
+      <div class="field"><label>Notes</label><textarea id="f-notes" placeholder="Informations complémentaires, suites…"></textarea></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn" onclick="closeModal('cand')">Annuler</button>
+      <button class="btn acc" onclick="saveCand()">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL magasin -->
+<div class="ov" id="ov-mag">
+  <div class="modal">
+    <div class="modal-h">
+      <div class="modal-t" id="mag-modal-title">Nouveau magasin</div>
+      <button class="btn ghost icon" onclick="closeModal('mag')"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="mf-idx" value="">
+      <div class="field-row">
+        <div class="field"><label>Nom du magasin *</label><input type="text" id="mf-name" placeholder="Naturalia Marais"><div class="ferr" id="mfe-name">Champ requis.</div></div>
+        <div class="field"><label>Quartier / Ville</label><input type="text" id="mf-zone" placeholder="Marais, Nation…"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Type</label><select id="mf-type"><option>Prêt-à-porter</option><option>Grande distribution</option><option>Bio / épicerie</option><option>Cosmétiques</option><option>Chaussures</option><option>Multi-marques</option><option>Accessoires</option><option>Autre</option></select></div>
+        <div class="field"><label>Statut</label><select id="mf-st"><option value="à démarcher">À démarcher</option><option value="envoyé">CV envoyé</option><option value="relance">À relancer</option><option value="réponse">Réponse positive</option><option value="refus">Refus</option></select></div>
+      </div>
+      <div class="field"><label>Contact / Notes</label><textarea id="mf-notes" placeholder="Nom du responsable, infos utiles…"></textarea></div>
+      <div class="field"><label><input type="checkbox" id="mf-pri" style="width:auto;margin-right:6px">Marquer comme prioritaire</label></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn" onclick="closeModal('mag')">Annuler</button>
+      <button class="btn acc" onclick="saveMag()">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+var SK='jobsearch_keyss_2026';
+var defaultCands=[
+  {co:'Sony Music France',role:'Stage marketing (spontané)',sec:'musique',st:'relance',dt:'Août 26',contact:'Aurélie Parizet · aurelie.parizet@sonymusic.com',notes:'Stage mai–août 2027. Contact via Nadjer Aboubakari (RCA UK). Relance octobre 2026.'},
+  {co:'Universal Music France',role:'Stage marketing (spontané)',sec:'musique',st:'envoyé',dt:'Août 26',contact:'',notes:''},
+  {co:'Warner Music France',role:'Stage marketing (spontané)',sec:'musique',st:'envoyé',dt:'Août 26',contact:'',notes:''},
+  {co:'Parlophone / Warner',role:'Promo assistant',sec:'musique',st:'relance',dt:'Août 26',contact:'',notes:'Candidature via Welcome to the Jungle.'},
+  {co:'Because Music',role:'Stage (spontané)',sec:'musique',st:'envoyé',dt:'Août 26',contact:'',notes:''},
+  {co:'Capitol Music France',role:'Stage (spontané)',sec:'musique',st:'envoyé',dt:'Août 26',contact:'',notes:''},
+  {co:'Rec. 118',role:'Stage (spontané)',sec:'musique',st:'envoyé',dt:'Août 26',contact:'',notes:''},
+  {co:'RCA Records UK',role:'Stage (spontané)',sec:'musique',st:'envoyé',dt:'Août 26',contact:'Nadjer Aboubakari',notes:'Contact clé. Stage Londres mai–août 2027.'},
+  {co:'Island Records UK',role:'Stage (spontané)',sec:'musique',st:'envoyé',dt:'Août 26',contact:'',notes:''},
+  {co:'0207 Def Jam',role:'Stage (spontané)',sec:'musique',st:'envoyé',dt:'Août 26',contact:'',notes:''},
+  {co:'RIMOWA',role:'CDI étudiant retail',sec:'luxe',st:'relance',dt:'Août 26',contact:'',notes:''},
+  {co:'Moncler',role:'CDI étudiant retail',sec:'luxe',st:'envoyé',dt:'Août 26',contact:'',notes:''},
+  {co:'Prada',role:'CDI étudiant retail',sec:'luxe',st:'réponse',dt:'Août 26',contact:'',notes:'Réponse positive reçue.'},
+  {co:'Chanel',role:'CDI étudiant retail',sec:'luxe',st:'réponse',dt:'Août 26',contact:'',notes:'Réponse positive reçue.'},
+];
+var defaultMags=[
+  {name:'Sandro Le Marais',type:'Prêt-à-porter',zone:'Marais',st:'à démarcher',pri:false,notes:''},
+  {name:'Maje Saint-Germain',type:'Prêt-à-porter',zone:'Saint-Germain',st:'envoyé',pri:false,notes:''},
+  {name:'Jacquemus flagship',type:'Prêt-à-porter',zone:'Saint-Honoré',st:'à démarcher',pri:true,notes:'Flagship Paris ouvert en 2024.'},
+  {name:'Naturalia République',type:'Bio / épicerie',zone:'République',st:'à démarcher',pri:false,notes:''},
+  {name:'Carrefour City Ivry',type:'Grande distribution',zone:'Ivry-sur-Seine',st:'à démarcher',pri:false,notes:'Proche domicile.'},
+  {name:'Mango Forum des Halles',type:'Prêt-à-porter',zone:'Halles',st:'envoyé',pri:false,notes:''},
+  {name:'Sephora Champs-Élysées',type:'Cosmétiques',zone:'Champs-Élysées',st:'relance',pri:false,notes:''},
+  {name:'Monoprix Nation',type:'Grande distribution',zone:'Nation',st:'à démarcher',pri:false,notes:''},
+];
+
+function loadData(){
+  try{var s=localStorage.getItem(SK);if(s){var d=JSON.parse(s);return d;}}catch(e){}
+  return null;
+}
+function saveData(){
+  try{localStorage.setItem(SK,JSON.stringify({cands:cands,mags:mags}));}catch(e){}
+}
+var stored=loadData();
+var cands=stored&&stored.cands?stored.cands:JSON.parse(JSON.stringify(defaultCands));
+var mags=stored&&stored.mags?stored.mags:JSON.parse(JSON.stringify(defaultMags));
+
+var stP={
+  'envoyé':'<span class="pill ps">Envoyée</span>',
+  'relance':'<span class="pill pw">À relancer</span>',
+  'réponse':'<span class="pill po">Réponse +</span>',
+  'refus':'<span class="pill pn">Refus</span>',
+  'à démarcher':'<span class="pill pm">À démarcher</span>'
+};
+var secP={
+  musique:'<span class="pill pmu">Musique</span>',
+  luxe:'<span class="pill pl">Luxe</span>',
+  retail:'<span class="pill pret">Retail</span>'
+};
+var magCycle=['à démarcher','envoyé','relance','réponse','refus'];
+var dashF='all';var magF='all';
+
+/* ─── NAVIGATION ─── */
+function goView(v){
+  document.querySelectorAll('.view').forEach(function(el){el.classList.remove('on')});
+  var el=document.getElementById('view-'+v);if(el)el.classList.add('on');
+  document.querySelectorAll('.ni').forEach(function(n){n.classList.remove('on')});
+  var ni=document.getElementById('ni-'+v);if(ni)ni.classList.add('on');
+  var titles={dash:"Vue d'ensemble",all:'Toutes les candidatures',relances:'Relances planifiées',magasins:'Magasins à démarcher'};
+  document.getElementById('page-title').textContent=titles[v]||v;
+  if(v==='all')renderAll();
+  if(v==='relances')renderRelances();
+  if(v==='magasins')renderMags();
+  if(v==='calendrier')renderCalendar();
+  updateCounters();
+  window.scrollTo(0,0);
+}
+function goSector(s){
+  goView('all');
+  document.querySelectorAll('.ni').forEach(function(n){n.classList.remove('on')});
+  var ni=document.getElementById('ni-'+s);if(ni)ni.classList.add('on');
+  var t={musique:'Musique',luxe:'Luxe & retail',retail:'Retail généraliste'};
+  document.getElementById('page-title').textContent=t[s];
+  document.getElementById('filter-sec').value=s;
+  renderAll();
+}
+
+/* ─── RENDER DASH ─── */
+function renderDash(){
+  var data=dashF==='all'?cands:cands.filter(function(c){return c.st===dashF});
+  if(data.length===0){
+    document.getElementById('tb-dash').innerHTML='<tr><td colspan="5" style="text-align:center;color:var(--ink3);padding:20px">Aucune candidature</td></tr>';
+    return;
+  }
+  document.getElementById('tb-dash').innerHTML=data.slice(0,8).map(function(r){
+    var i=cands.indexOf(r);
+    return '<tr><td style="font-weight:500">'+esc(r.co)+'</td><td style="color:var(--ink3)">'+esc(r.role)+'</td><td>'+(secP[r.sec]||'')+'</td><td>'+(stP[r.st]||'')+'</td><td><div class="act-col"><button class="edit-btn" onclick="editCand('+i+')" title="Modifier"><i class="ti ti-pencil"></i></button><button class="del-btn" onclick="deleteCand('+i+')" title="Supprimer"><i class="ti ti-trash"></i></button></div></td></tr>';
+  }).join('');
+}
+
+/* ─── RENDER ALL ─── */
+function renderAll(){
+  var q=(document.getElementById('search-all')||{}).value||'';
+  var fs=(document.getElementById('filter-sec')||{}).value||'';
+  var fst=(document.getElementById('filter-st')||{}).value||'';
+  var data=cands.filter(function(c){
+    var matchQ=!q||(c.co+c.role+c.contact+c.notes).toLowerCase().includes(q.toLowerCase());
+    var matchS=!fs||c.sec===fs;
+    var matchSt=!fst||c.st===fst;
+    return matchQ&&matchS&&matchSt;
+  });
+  var tb=document.getElementById('tb-all');
+  if(!tb)return;
+  if(data.length===0){
+    tb.innerHTML='<tr><td colspan="7"><div class="empty"><i class="ti ti-inbox"></i><div class="empty-t">Aucun résultat</div><div class="empty-s">Modifie ta recherche ou ajoute une candidature.</div></div></td></tr>';
+    document.getElementById('count-all').textContent='';
+    return;
+  }
+  tb.innerHTML=data.map(function(r){
+    var i=cands.indexOf(r);
+    var noteTag=r.notes?'<div class="note-tag"><i class="ti ti-notes" style="font-size:10px"></i>Note</div>':'';
+    return '<tr><td><div style="font-weight:500">'+esc(r.co)+'</div>'+(r.contact?'<div style="font-size:10px;color:var(--ink3);margin-top:2px">'+esc(r.contact)+'</div>':'')+'</td><td style="color:var(--ink3)">'+esc(r.role)+'</td><td>'+(secP[r.sec]||'')+'</td><td>'+(stP[r.st]||'')+'</td><td style="color:var(--ink4);font-size:11px">'+esc(r.dt)+'</td><td>'+noteTag+'</td><td><div class="act-col"><button class="edit-btn" onclick="editCand('+i+')" title="Modifier"><i class="ti ti-pencil"></i></button><button class="del-btn" onclick="deleteCand('+i+')" title="Supprimer"><i class="ti ti-trash"></i></button></div></td></tr>';
+  }).join('');
+  document.getElementById('count-all').textContent=data.length+' candidature'+(data.length>1?'s':'');
+}
+
+/* ─── RENDER RELANCES ─── */
+function renderRelances(){
+  var relCands=cands.filter(function(c){return c.st==='relance'});
+  var relMags=mags.filter(function(m){return m.st==='relance'});
+  var all=relCands.map(function(c){return{name:c.co,desc:c.role+(c.contact?' · '+c.contact:''),type:'cand',urgent:c.co.toLowerCase().includes('sony')}})
+    .concat(relMags.map(function(m){return{name:m.name,desc:m.type+' · '+m.zone,type:'mag',urgent:false}}));
+  var rl=document.getElementById('rel-list');
+  if(all.length===0){
+    rl.innerHTML='<div class="empty"><i class="ti ti-bell-off"></i><div class="empty-t">Aucune relance à planifier</div><div class="empty-s">Toutes tes candidatures sont à jour.</div></div>';
+    return;
+  }
+  rl.innerHTML=all.map(function(r){
+    return '<div class="card" style="margin-bottom:10px;padding:14px 16px"><div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px"><div style="min-width:0"><div style="font-size:13px;font-weight:500;color:var(--ink)">'+esc(r.name)+'</div><div style="font-size:11px;color:var(--ink3);margin-top:2px">'+esc(r.desc)+'</div></div><span class="pill '+(r.urgent?'pn':'pw')+'">'+(r.urgent?'Priorité':'À relancer')+'</span></div><div style="margin-top:10px"><button class="btn sm" onclick="copyRelancePrompt(\''+esc(r.name)+'\')"><i class="ti ti-copy"></i>Copier prompt relance</button></div></div>';
+  }).join('');
+}
+
+/* ─── RENDER RELANCES DASH ─── */
+function renderRelancesDash(){
+  var relCands=cands.filter(function(c){return c.st==='relance'}).slice(0,4);
+  var d=document.getElementById('relances-dash');
+  if(!d)return;
+  if(relCands.length===0){
+    d.innerHTML='<div style="text-align:center;padding:20px;color:var(--ink3);font-size:12px">Aucune relance en attente</div>';
+    return;
+  }
+  var colors=['var(--red)','var(--amber)','var(--amber)','var(--green)'];
+  d.innerHTML=relCands.map(function(c,idx){
+    return '<div class="rr"><div class="rd" style="background:'+colors[idx%colors.length]+'"></div><div class="ri"><div class="rn">'+esc(c.co)+'</div><div class="rs">'+esc(c.role)+'</div></div><div class="rdate">'+esc(c.dt)+'</div></div>';
+  }).join('');
+}
+
+/* ─── RENDER MAGS ─── */
+function renderMags(){
+  var q=(document.getElementById('search-mag')||{}).value||'';
+  var data=mags.filter(function(m){
+    var matchF=magF==='all'||m.st===magF;
+    var matchQ=!q||(m.name+m.zone+m.type+m.notes).toLowerCase().includes(q.toLowerCase());
+    return matchF&&matchQ;
+  });
+  var g=document.getElementById('mag-grid');
+  var cm=document.getElementById('count-mag');
+  if(data.length===0){
+    g.innerHTML='<div class="empty" style="grid-column:1/-1"><i class="ti ti-building-store"></i><div class="empty-t">Aucun magasin trouvé</div><div class="empty-s">Ajoute des magasins à démarcher.</div></div>';
+    if(cm)cm.textContent='';
+    return;
+  }
+  g.innerHTML=data.map(function(m){
+    var i=mags.indexOf(m);
+    return '<div class="mc'+(m.pri?' pri':'')+'"><div style="display:flex;align-items:flex-start;justify-content:space-between;gap:6px"><div style="min-width:0"><div class="mn">'+esc(m.name)+'</div><div class="mt">'+esc(m.type)+'</div>'+(m.notes?'<div style="font-size:10px;color:var(--ink3);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(m.notes)+'</div>':'')+'</div>'+(m.pri?'<span class="pill pm" style="font-size:9px;flex-shrink:0">Priorité</span>':'')+'</div><div class="mf"><span class="mz"><i class="ti ti-map-pin" style="font-size:11px"></i>'+esc(m.zone)+'</span>'+(stP[m.st]||'')+'</div><div class="ma"><button class="btn sm" onclick="copyMagPrompt(\''+esc(m.name)+'\')"><i class="ti ti-copy"></i>Email</button><button class="btn sm" onclick="cycleMag('+i+')">Statut →</button><button class="edit-btn" onclick="editMag('+i+')" title="Modifier"><i class="ti ti-pencil"></i></button><button class="del-btn" onclick="deleteMag('+i+')" title="Supprimer"><i class="ti ti-trash"></i></button></div></div>';
+  }).join('');
+  if(cm)cm.textContent=data.length+' magasin'+(data.length>1?'s':'');
+}
+
+/* ─── UPDATE COUNTERS ─── */
+function updateCounters(){
+  var tot=cands.length;
+  var att=cands.filter(function(c){return c.st==='envoyé'}).length;
+  var rel=cands.filter(function(c){return c.st==='relance'}).length;
+  var rep=cands.filter(function(c){return c.st==='réponse'}).length;
+  var mus=cands.filter(function(c){return c.sec==='musique'}).length;
+  var lux=cands.filter(function(c){return c.sec==='luxe'}).length;
+  var ret=cands.filter(function(c){return c.sec==='retail'}).length;
+  var taux=tot>0?Math.round(rep/tot*100):0;
+  document.getElementById('k-tot').textContent=tot;
+  document.getElementById('k-att').textContent=att;
+  document.getElementById('k-rel').textContent=rel;
+  document.getElementById('k-rep').textContent=rep;
+  document.getElementById('nb-tot').textContent=tot;
+  document.getElementById('nb-rel').textContent=rel;
+  document.getElementById('nb-mag').textContent=mags.length;
+  document.getElementById('nb-mus').textContent=mus;
+  document.getElementById('nb-lux').textContent=lux;
+  document.getElementById('nb-ret').textContent=ret;
+  document.getElementById('b-mus').textContent=mus;
+  document.getElementById('b-lux').textContent=lux;
+  document.getElementById('b-ret').textContent=ret;
+  document.getElementById('b-taux').textContent=taux+'%';
+  document.getElementById('bf-mus').style.width=tot>0?Math.round(mus/tot*100)+'%':'0%';
+  document.getElementById('bf-lux').style.width=tot>0?Math.round(lux/tot*100)+'%':'0%';
+  document.getElementById('bf-ret').style.width=tot>0?Math.round(ret/tot*100)+'%':'0%';
+  document.getElementById('bf-taux').style.width=taux+'%';
+  renderRelancesDash();
+}
+
+/* ─── TABS ─── */
+function dashTab(f,btn){
+  dashF=f;
+  document.querySelectorAll('#dash-tabs .tab').forEach(function(t){t.classList.remove('on')});
+  btn.classList.add('on');renderDash();
+}
+function magTab(f,btn){
+  magF=f;
+  document.querySelectorAll('#mag-filters .tab').forEach(function(t){t.classList.remove('on')});
+  btn.classList.add('on');renderMags();
+}
+
+/* ─── MODAL CAND ─── */
+function openModal(t){document.getElementById('ov-'+t).classList.add('open')}
+function closeModal(t){
+  document.getElementById('ov-'+t).classList.remove('open');
+  if(t==='cand'){
+    ['f-co','f-role','f-dt','f-contact','f-notes'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+    document.getElementById('f-sec').value='musique';
+    document.getElementById('f-st').value='envoyé';
+    document.getElementById('f-idx').value='';
+    document.getElementById('cand-modal-title').textContent='Nouvelle candidature';
+    document.getElementById('fe-co').style.display='none';
+    document.getElementById('f-co').style.borderColor='';
+  }
+  if(t==='mag'){
+    ['mf-name','mf-zone','mf-notes'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+    document.getElementById('mf-type').value='Prêt-à-porter';
+    document.getElementById('mf-st').value='à démarcher';
+    document.getElementById('mf-pri').checked=false;
+    document.getElementById('mf-idx').value='';
+    document.getElementById('mag-modal-title').textContent='Nouveau magasin';
+    document.getElementById('mfe-name').style.display='none';
+    document.getElementById('mf-name').style.borderColor='';
+  }
+}
+function editCand(i){
+  var c=cands[i];
+  document.getElementById('f-idx').value=i;
+  document.getElementById('f-co').value=c.co;
+  document.getElementById('f-role').value=c.role;
+  document.getElementById('f-dt').value=c.dt;
+  document.getElementById('f-sec').value=c.sec;
+  document.getElementById('f-st').value=c.st;
+  document.getElementById('f-contact').value=c.contact||'';
+  document.getElementById('f-notes').value=c.notes||'';
+  document.getElementById('cand-modal-title').textContent='Modifier la candidature';
+  openModal('cand');
+}
+function saveCand(){
+  var co=document.getElementById('f-co').value.trim();
+  if(!co){document.getElementById('fe-co').style.display='block';document.getElementById('f-co').style.borderColor='var(--red)';return;}
+  var idx=document.getElementById('f-idx').value;
+  var obj={co:co,role:document.getElementById('f-role').value||'—',sec:document.getElementById('f-sec').value,st:document.getElementById('f-st').value,dt:document.getElementById('f-dt').value||new Date().toLocaleDateString('fr-FR',{month:'short',year:'2-digit'}),contact:document.getElementById('f-contact').value,notes:document.getElementById('f-notes').value};
+  if(idx!==''){cands[parseInt(idx)]=obj;toast('Candidature modifiée');}
+  else{cands.unshift(obj);toast('Candidature ajoutée');}
+  saveData();renderDash();renderAll();updateCounters();closeModal('cand');
+}
+function deleteCand(i){
+  if(!confirm('Supprimer "'+cands[i].co+'" ?'))return;
+  cands.splice(i,1);saveData();renderDash();renderAll();updateCounters();toast('Supprimée');
+}
+
+/* ─── MODAL MAG ─── */
+function editMag(i){
+  var m=mags[i];
+  document.getElementById('mf-idx').value=i;
+  document.getElementById('mf-name').value=m.name;
+  document.getElementById('mf-zone').value=m.zone;
+  document.getElementById('mf-type').value=m.type;
+  document.getElementById('mf-st').value=m.st;
+  document.getElementById('mf-notes').value=m.notes||'';
+  document.getElementById('mf-pri').checked=m.pri;
+  document.getElementById('mag-modal-title').textContent='Modifier le magasin';
+  openModal('mag');
+}
+function saveMag(){
+  var name=document.getElementById('mf-name').value.trim();
+  if(!name){document.getElementById('mfe-name').style.display='block';document.getElementById('mf-name').style.borderColor='var(--red)';return;}
+  var idx=document.getElementById('mf-idx').value;
+  var obj={name:name,type:document.getElementById('mf-type').value,zone:document.getElementById('mf-zone').value||'Paris',st:document.getElementById('mf-st').value,notes:document.getElementById('mf-notes').value,pri:document.getElementById('mf-pri').checked};
+  if(idx!==''){mags[parseInt(idx)]=obj;toast('Magasin modifié');}
+  else{mags.unshift(obj);toast('Magasin ajouté');}
+  saveData();renderMags();updateCounters();closeModal('mag');
+}
+function deleteMag(i){
+  if(!confirm('Supprimer "'+mags[i].name+'" ?'))return;
+  mags.splice(i,1);saveData();renderMags();updateCounters();toast('Supprimé');
+}
+function cycleMag(i){
+  var cur=magCycle.indexOf(mags[i].st);
+  mags[i].st=magCycle[(cur+1)%magCycle.length];
+  saveData();renderMags();
+}
+
+/* ─── COPY PROMPTS ─── */
+function copyText(txt){
+  if(navigator.clipboard){navigator.clipboard.writeText(txt).then(function(){toast('Copié ✓')}).catch(function(){fallbackCopy(txt)});}
+  else{fallbackCopy(txt);}
+}
+function fallbackCopy(txt){
+  var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('Copié ✓');
+}
+function copyLMPrompt(){
+  copyText("Rédige une lettre de motivation spontanée pour une candidature dans le secteur de la musique. Je m'appelle Keyss, je suis étudiante en 1ère année de Bachelor Luxury Marketing à l'EIML Paris (Groupe SKOLAE) et ambassadrice de l'école. J'ai effectué un stage de vente chez Printemps Haussmann (corner horlogerie : Coach, Balmain, Briston, Alpina, Seiko, Citizen). Je suis disponible les lundis et mardis pour un stage de 6 mois à Paris. J'ai une passion profonde pour la musique R&B et soul (Aaliyah, SZA, Jorja Smith, Giveon). Adapte le ton : professionnel mais sincère.");
+}
+function copyRelancePrompt(co){
+  copyText("Rédige un email de relance pour ma candidature chez "+co+". Je suis Keyss, étudiante en Luxury Marketing à l'EIML Paris, disponible lundi et mardi. Ton professionnel et concis, maximum 5 lignes.");
+}
+function copyRelanceAll(){
+  var relCands=cands.filter(function(c){return c.st==='relance'});
+  var txt=relCands.map(function(c){return '— '+c.co+(c.contact?' ('+c.contact+')':'');}).join('\n');
+  copyText("Relances à planifier :\n"+txt+"\n\nPour chaque contact, rédige un email de relance court et professionnel (5 lignes max).");
+}
+function copyMagPrompt(name){
+  copyText("Rédige un email de candidature spontanée pour un poste vendeur/vendeuse étudiant chez "+name+" à Paris. Je m'appelle Keyss, disponible les lundis et mardis. J'ai une expérience de vente chez Printemps Haussmann (corner horlogerie, juin–août 2026). Ton dynamique et professionnel, 5–6 lignes maximum.");
+}
+
+/* ─── EXPORT CSV ─── */
+function exportCSV(){
+  var rows=[['Entreprise','Poste','Secteur','Statut','Date','Contact','Notes']];
+  cands.forEach(function(c){
+    rows.push([c.co,c.role,c.sec,c.st,c.dt,c.contact||'',c.notes||'']);
+  });
+  var csv=rows.map(function(r){return r.map(function(v){return '"'+String(v).replace(/"/g,'""')+'"';}).join(',');}).join('\n');
+  var blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');a.href=url;a.download='candidatures_keyss_2026.csv';a.click();
+  URL.revokeObjectURL(url);
+  toast('Export CSV téléchargé');
+}
+
+/* ─── UTILS ─── */
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function toast(msg){
+  var t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},2200);
+}
+
+/* ─── CLOSE ON BACKDROP ─── */
+['ov-cand','ov-mag'].forEach(function(id){
+  var el=document.getElementById(id);
+  if(el)el.addEventListener('click',function(e){if(e.target===this)closeModal(id.replace('ov-',''));});
+});
+/* ─── ESC KEY ─── */
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    ['cand','mag'].forEach(function(t){var o=document.getElementById('ov-'+t);if(o&&o.classList.contains('open'))closeModal(t);});
+  }
+});
+/* ─── VALIDATION LIVE ─── */
+document.getElementById('f-co').addEventListener('input',function(){this.style.borderColor='';document.getElementById('fe-co').style.display='none';});
+document.getElementById('mf-name').addEventListener('input',function(){this.style.borderColor='';document.getElementById('mfe-name').style.display='none';});
+
+/* ─── INIT ─── */
+
+/* ─── CALENDRIER ─── */
+var calYear=2026;var calMonth=8; // 0-indexed, 8=septembre
+
+var MONTH_LABELS=['fr','Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+
+// Parse dates from candidatures — format like "Août 26", "Sept 26", "Oct 26"
+var MONTH_MAP={jan:0,fév:1,feb:1,mar:2,avr:3,apr:3,mai:4,jun:5,jui:5,juil:5,jul:5,aoû:6,'aou':6,aug:6,sep:7,'oct':9,'nov':10,'déc':11,'dec':11};
+function parseMonthStr(dt){
+  if(!dt)return null;
+  var parts=dt.trim().toLowerCase().split(/[\s\-\/]+/);
+  var monthStr=parts[0].substring(0,3);
+  var yearStr=parts[1]||'26';
+  var m=MONTH_MAP[monthStr];
+  if(m===undefined)return null;
+  var y=parseInt(yearStr)<100?2000+parseInt(yearStr):parseInt(yearStr);
+  return{y:y,m:m};
+}
+
+// Also support relances: add planned relance dates
+function getRelanceDates(){
+  // Fixed relances from data
+  var rel=[];
+  cands.forEach(function(c){
+    if(c.st==='relance'){
+      var p=parseMonthStr(c.dt);
+      // Relance = 2 weeks after send date
+      if(p){
+        var d=new Date(p.y,p.m,14);
+        rel.push({date:d,label:c.co,type:'rel'});
+      }
+    }
+    if(c.st==='envoyé'){
+      var p=parseMonthStr(c.dt);
+      if(p){
+        var d=new Date(p.y,p.m,1);
+        rel.push({date:d,label:c.co,type:'env'});
+      }
+    }
+    if(c.st==='réponse'){
+      var p=parseMonthStr(c.dt);
+      if(p){
+        var d=new Date(p.y,p.m,7);
+        rel.push({date:d,label:c.co,type:'rep'});
+      }
+    }
+  });
+  mags.forEach(function(m){
+    if(m.st==='à démarcher'||m.st==='envoyé'){
+      rel.push({date:new Date(2026,8,15),label:m.name,type:'mag'});
+    }
+  });
+  return rel;
+}
+
+function renderCalendar(){
+  var label=document.getElementById('cal-month-label');
+  var grid=document.getElementById('cal-days');
+  if(!label||!grid)return;
+  label.textContent=MONTH_LABELS[calMonth+1]+' '+calYear;
+
+  var events=getRelanceDates();
+  var today=new Date();
+
+  // First day of month
+  var first=new Date(calYear,calMonth,1);
+  var startDow=first.getDay(); // 0=Sun
+  // Convert to Mon-first: 0=Mon
+  var startOffset=(startDow===0)?6:startDow-1;
+  var daysInMonth=new Date(calYear,calMonth+1,0).getDate();
+  var prevMonthDays=new Date(calYear,calMonth,0).getDate();
+
+  var cells=[];
+  // Previous month days
+  for(var i=startOffset-1;i>=0;i--){
+    cells.push({day:prevMonthDays-i,cur:false,y:calMonth===0?calYear-1:calYear,m:calMonth===0?11:calMonth-1});
+  }
+  // Current month days
+  for(var d=1;d<=daysInMonth;d++){
+    cells.push({day:d,cur:true,y:calYear,m:calMonth});
+  }
+  // Next month fill
+  var remaining=(7-cells.length%7)%7;
+  for(var j=1;j<=remaining;j++){
+    cells.push({day:j,cur:false,y:calMonth===11?calYear+1:calYear,m:calMonth===11?0:calMonth+1});
+  }
+
+  grid.innerHTML=cells.map(function(cell){
+    var isToday=cell.cur&&cell.day===today.getDate()&&cell.y===today.getFullYear()&&cell.m===today.getMonth();
+    var evs=events.filter(function(ev){
+      return ev.date.getFullYear()===cell.y&&ev.date.getMonth()===cell.m&&ev.date.getDate()===cell.day;
+    });
+    var evHtml=evs.slice(0,3).map(function(ev){
+      return '<div class="cal-ev ev-'+ev.type+'" title="'+ev.label+'">'+ev.label+'</div>';
+    }).join('');
+    if(evs.length>3){evHtml+='<div style="font-size:9px;color:var(--ink3);padding:1px 5px">+'+(evs.length-3)+' autres</div>';}
+    return '<div class="cal-day'+(cell.cur?'':' other')+(isToday?' today':'')+'"><div class="cal-dn">'+cell.day+'</div>'+evHtml+'</div>';
+  }).join('');
+}
+
+function calPrev(){
+  calMonth--;if(calMonth<0){calMonth=11;calYear--;}
+  renderCalendar();
+}
+function calNext(){
+  calMonth++;if(calMonth>11){calMonth=0;calYear++;}
+  renderCalendar();
+}
+function calToday(){
+  var t=new Date();calYear=t.getFullYear();calMonth=t.getMonth();
+  renderCalendar();
+}
+
+renderDash();updateCounters();
+</script>
+</body>
+</html>
